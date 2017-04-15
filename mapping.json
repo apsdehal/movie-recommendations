@@ -1,0 +1,41 @@
+{
+  "movie": {
+    "properties": {
+      "director_name": {
+        "type": "text"
+      },
+      "actor_name": {
+        "type": "text"
+      },
+      "genres": {
+        "type": "keyword"
+      },
+      "movie_title": {
+        "type": "text"
+      },
+      "plot_keywords": {
+        "type": "keyword"
+      },
+      "movie_imdb_link": {
+        "type": "keyword",
+        "index": false
+      },
+      "language": {
+        "type": "keyword",
+        "index": false
+      },
+      "country": {
+        "type": "keyword",
+        "index": false
+      },
+      "title_year": {
+        "type": "integer",
+        "index": false
+      },
+      "imdb_score": {
+        "type": "float",
+        "index": false
+      }
+    }
+  }
+}
