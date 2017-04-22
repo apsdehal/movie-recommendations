@@ -1,7 +1,8 @@
 {
   "server_port": 9999,
-  "query_engine_url": "http://localhost:8888",
+  "query_engine_url": "http://localhost:9200",
   "mapping_path": "mapping.json",
   "csv_path": "movies.csv",
-  "index_name": "movie_recommendations"
+  "index_name": "movie_recommendations",
+  "num_shards": 3
 }
