@@ -1,0 +1,6 @@
+{
+  "server_port": 9999,
+  "query_engine_url": "http://localhost:8888",
+  "mapping_path": "mapping.json",
+  "csv_path": "movies.csv",
+}
