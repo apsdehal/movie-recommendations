@@ -32,6 +32,7 @@ import csv
 
 with open('movie_metadata.csv') as csvfile:
     movie_metadata = csv.DictReader(csvfile)
+    result = []
     for row in movie_metadata:
         row['genres'] = row['genres'].split('|')
         row['plot_keywords'] = row['plot_keywords'].split('|')
@@ -60,6 +61,8 @@ with open('movie_metadata.csv') as csvfile:
         row.pop('budget', None)
         row.pop('movie_facebook_likes', None)
 
-        print(row)
+        result.append(row)
+
+return result
 
 
