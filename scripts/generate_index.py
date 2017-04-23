@@ -1,5 +1,7 @@
 from config import config
+from scripts.csv_parser import get_all_from_csv
 import requests
+from tornado import httpclient, gen, ioloop
 import json
 
 
@@ -25,8 +27,27 @@ def createIndexIfNotExists():
     return r.status_code == 200
 
 
+@gen.coroutine
 # Call only if index doesn't already exists
-def feedIndexWithDocs():
+def createAndFeedIndexWithDocs(feed_anyway=False):
     # See if bulk index option is there
     # or feed docs one by one
-    return
+    # Checks if index exists if not creates it and feeds
+
+    if createIndexIfNotExists() or feed_anyway:
+        query_url = "%s/%s/%s" % (config["query_engine_url"], config["index_name"], config["type_name"])
+
+        docs = get_all_from_csv()
+        http = httpclient.AsyncHTTPClient()
+
+        futures = []
+        count = 0
+        for doc in docs:
+            payload = doc
+            futures.append(http.fetch(query_url, method="POST", body=json.dumps(payload).strip()))
+            count += 1
+            if count == 10:
+                yield futures
+                futures = []
+                count = 0
+        ioloop.IOLoop.instance().stop()
