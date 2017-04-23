@@ -1,4 +1,5 @@
 {
+  "server_url": "http://localhost",
   "server_port": 9999,
   "query_engine_url": "http://localhost:9200",
   "mapping_path": "mapping.json",

@@ -5,6 +5,28 @@
     <title>Movie Recommendations</title>
   </head>
   <body>
-
+      <form method="POST" action="{{url}}">
+          <label>Select main search type
+              <select name="search_type">
+                  <option value="actor_names">Actor</option>
+                  <option value="director_name">Director</option>
+                  <option value="movie_title">Movie Name</option>
+              </select>
+          </label>
+          <label>
+              <input name="query"/>
+          </label>
+      </form>
+      <div>
+          {% for item in items %}
+            {% set item = item["_source"] %}
+            <div>
+                <span><a href="{{ item["movie_imdb_link"] }}">{{ escape(item["movie_title"]) }}</a></span>
+                <span>{{ escape(item["director_name"]) }}</span>
+                <span>{{ escape(item["imdb_score"]) }}</span>
+                <span>{{ escape(item["actor_names"][0]) }}, {{ escape(item["actor_names"][1]) }}</span>
+            </div>
+          {% end %}
+      </div>
   </body>
 </html>
