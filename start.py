@@ -11,7 +11,9 @@ log = logging.getLogger(__name__)
 
 def main():
     SERVER_PORT = config["server_port"]
-    task_id = process.fork_processes(None)
+
+    socket = netutil.bind_sockets(SERVER_PORT)
+    task_id = process.fork_processes(0)
 
     application = web.Application([
         (r"/", IndexController),
@@ -19,8 +21,8 @@ def main():
     ])
 
     http_server = httpserver.HTTPServer(application)
-    http_server.add_sockets(netutil.bind_sockets(SERVER_PORT + task_id))
-    log.info("Worker listening on %d", SERVER_PORT + task_id)
+    http_server.add_sockets(socket)
+    log.info("Worker listening on %d", SERVER_PORT)
     IOLoop.current().start()
 
 
