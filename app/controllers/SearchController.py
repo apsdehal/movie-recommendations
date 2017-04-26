@@ -8,6 +8,16 @@ from app.models.QueryModel import QueryModel
 
 
 class SearchController(tornado.web.RequestHandler):
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "x-requested-with")
+        self.set_header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
+
+    def options(self):
+        # no body
+        self.set_status(204)
+        self.finish()
+
     def initialize(self):
         settings = {
             "url": config['query_engine_url'],
@@ -19,12 +29,13 @@ class SearchController(tornado.web.RequestHandler):
 
     @tornado.gen.coroutine
     def post(self):
-        search_type = self.get_body_argument('search_type')
-        query = self.get_body_argument('query')
+        body = json.loads(self.request.body.decode('utf-8'))
+        search_type = body.get('search_type', "")
+        query = body.get('query', "")
         items = self.query_model.searchField(search_type, query)
         if items is not False:
             items = json.loads(items)
             items = items['hits']
         else:
             items = {'hits': []}
-        self.render("../views/index.html", url=self.search_url, items=items['hits'])
+        self.write(json.dumps(items['hits']))
