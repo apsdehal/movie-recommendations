@@ -58,10 +58,12 @@ def generatePlot():
 
             response = json.loads(response.text)
 
-            plot = response['Plot']
-            poster = response['Poster']
+            plot = response.get('Plot','')
+            poster = response.get('Poster','')
             row[PLOT_KEY] = plot
             row[POSTER_KEY] = poster
+
+            print(row['movie_title'],plot,poster)
 
             result.append(row)
 
@@ -74,4 +76,3 @@ def generatePlot():
         for row in result:
             writer.writerow(row)
 
-generatePlot()
