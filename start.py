@@ -2,6 +2,7 @@ from tornado.ioloop import IOLoop
 from tornado import web, httpserver, process, netutil
 from app.controllers.IndexController import IndexController
 from app.controllers.SearchController import SearchController
+from app.controllers.RecommendationController import RecommendationController
 from config import config
 
 import logging
@@ -17,7 +18,8 @@ def main():
 
     application = web.Application([
         (r"/", IndexController),
-        (r"/search", SearchController)
+        (r"/search", SearchController),
+        (r"/recommend", RecommendationController),
     ])
 
     http_server = httpserver.HTTPServer(application)
