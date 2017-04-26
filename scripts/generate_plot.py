@@ -63,8 +63,6 @@ def generatePlot():
             row[PLOT_KEY] = plot
             row[POSTER_KEY] = poster
 
-            print(row['movie_title'],plot,poster)
-
             result.append(row)
 
     if config['csv_path'].endswith('.csv'):
