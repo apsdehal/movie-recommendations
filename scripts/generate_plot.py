@@ -39,7 +39,7 @@ import time
 
 def generatePlot():
     PLOT_KEY = 'movie_plot'
-    POSTER_KEY = 'movie_plot'
+    POSTER_KEY = 'movie_poster'
 
     with open(config['csv_path']) as csvfile:
         movie_metadata = csv.DictReader(csvfile)
