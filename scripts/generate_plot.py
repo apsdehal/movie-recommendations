@@ -45,14 +45,18 @@ def generatePlot():
         movie_metadata = csv.DictReader(csvfile)
         fieldnames = movie_metadata.fieldnames + [PLOT_KEY, POSTER_KEY]
         result = []
-        sleep_index = 0
-        sleep_after = 5
         sleep_secs = 2
 
         for row in movie_metadata:
             imdb_id = row['movie_imdb_link'].split('/')[4]
             url = "http://www.omdbapi.com/?i="+imdb_id
-            response = json.loads(requests.get(url).text)
+            response = requests.get(url)
+
+            while response.status_code != requests.codes.ok:
+                time.sleep(sleep_secs)
+                response = requests.get(url)
+
+            response = json.loads(response.text)
 
             plot = response['Plot']
             poster = response['Poster']
@@ -60,11 +64,6 @@ def generatePlot():
             row[POSTER_KEY] = poster
 
             result.append(row)
-
-            sleep_index += 1
-            if sleep_index % sleep_after == 0:
-                sleep_index = 0
-                time.sleep(sleep_secs)
 
     if config['csv_path'].endswith('.csv'):
         new_csv_path = config['csv_path'][:-4]+'_new.csv'
@@ -75,3 +74,4 @@ def generatePlot():
         for row in result:
             writer.writerow(row)
 
+generatePlot()
