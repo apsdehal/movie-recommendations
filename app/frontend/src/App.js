@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import config from "../../../config.json"
 
 class App extends Component {
   constructor() {
@@ -10,8 +11,9 @@ class App extends Component {
           search_type: 'actor_names',
           query: ''
       };
+      console.log(config)
       this.axiosInstance = axios.create({
-          baseUrl: 'http://localhost:9999/search',
+          baseUrl: config["server_url"] + "/" + config["server_port"],
           responseType: 'json',
 
       });
