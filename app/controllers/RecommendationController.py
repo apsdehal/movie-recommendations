@@ -4,7 +4,7 @@ import tornado.httpclient
 import json
 
 from config import config
-from app.models.QueryModel import QueryModel
+from app.models.RecommendationModel import RecommendationModel
 
 
 class RecommendationController(tornado.web.RequestHandler):
