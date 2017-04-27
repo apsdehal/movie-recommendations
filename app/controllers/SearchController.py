@@ -34,7 +34,7 @@ class SearchController(tornado.web.RequestHandler):
         query = body.get('query', "")
         items = self.query_model.searchField(search_type, query)
         if items is not False:
-            items = json.loads(items)
+            items = json.loads(items.decode("utf-8"))
             items = items['hits']
         else:
             items = {'hits': []}

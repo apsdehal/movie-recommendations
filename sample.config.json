@@ -6,5 +6,6 @@
   "csv_path": "movies.csv",
   "index_name": "movie_recommendations",
   "num_shards": 3,
-  "type_name": "movie"
+  "type_name": "movie",
+  "omdb_link": "http://omdbapi.com"
 }
