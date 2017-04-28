@@ -2,6 +2,7 @@ import tornado.web
 import tornado.gen
 import tornado.httpclient
 import json
+import requests
 
 from config import config
 from app.models.RecommendationModel import RecommendationModel
@@ -24,18 +25,24 @@ class RecommendationController(tornado.web.RequestHandler):
             "index": config['index_name'],
             "type": config['type_name']
         }
-        self.search_url = "%s:%s/%s" % (config["server_url"], config["server_port"], "search")
-        self.query_model = QueryModel(settings)
+        self.recommendation_model = RecommendationModel(settings)
 
     @tornado.gen.coroutine
-    def post(self):
-        body = json.loads(self.request.body.decode('utf-8'))
-        search_type = body.get('search_type', "")
-        query = body.get('query', "")
-        items = self.query_model.searchField(search_type, query)
+    def get(self, id):
+        items = self.recommendation_model.getItemFromId(id)
         if items is not False:
-            items = json.loads(items)
-            items = items['hits']
+            items = json.loads(items.decode("utf-8"))
+            director_name = items.get('director_name', None)
+            plot_keywords = items.get('plot_keywords', None)
+            actor_names = items.get('actor_names', None)
+            genres = items.get('genres', None)
+            items = self.recommendation_model.searchFields(director_name,
+                plot_keywords, actor_names, genres)
+            if items is not False:
+                items = json.loads(items.decode("utf-8"))
+                items = items['hits']
+            else:
+                items = {'hits': []}
         else:
             items = {'hits': []}
         self.write(json.dumps(items['hits']))

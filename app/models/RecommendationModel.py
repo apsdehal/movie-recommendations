@@ -6,11 +6,37 @@ from config import config
 
 class RecommendationModel:
     def __init__(self, settings):
-        self.url = "%s/%s/%s/_search" % (settings['url'], settings['index'], settings['type'])
+        self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
 
-    def searchField(self, field, query):
+    def getItemFromId(self, id):
+        self.url = '/'.join([self.url,id])
+        r = requests.get(self.url)
+        if r.status_code == 200:
+            return r.content
+        else:
+            return False
+
+    def searchFields(self, director_name, plot_keywords, actor_names, genres):
         payload = {}
-        payload["query"] = {"term": {field: query}}
+        should_query = []
+
+        if director_name:
+            query = { "match": { "director_name":  director_name }}
+            should_query.append(query)
+        if plot_keywords:
+            for keyword in plot_keywords:
+                query = { "match": { "plot_keywords":  keyword }}
+                should_query.append(query)
+        if actor_names:
+            for actor in actor_names:
+                query = { "match": { "actor_names":  actor }}
+                should_query.append(query)
+        if genres:
+            for genre in genres:
+                query = { "match": { "genres":  genre }}
+                should_query.append(query)
+
+        payload["query"] = {'bool':{'should':should_query}}
         print(self.url, payload)
         r = requests.get(self.url, data=json.dumps(payload))
         if r.status_code == 200:
