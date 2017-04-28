@@ -19,7 +19,7 @@ def main():
     application = web.Application([
         (r"/", IndexController),
         (r"/search", SearchController),
-        (r"/recommend([^/]+)", RecommendationController),
+        (r"/recommend/([^/]+)", RecommendationController),
     ])
 
     http_server = httpserver.HTTPServer(application)
