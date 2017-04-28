@@ -29,20 +29,21 @@ class RecommendationController(tornado.web.RequestHandler):
 
     @tornado.gen.coroutine
     def get(self, id):
-        items = self.recommendation_model.getItemFromId(id)
-        if items is not False:
-            items = json.loads(items.decode("utf-8"))
-            director_name = items.get('director_name', None)
-            plot_keywords = items.get('plot_keywords', None)
-            actor_names = items.get('actor_names', None)
-            genres = items.get('genres', None)
+        doc = self.recommendation_model.getItemFromId(id)
+        if doc is not False:
+            doc = json.loads(doc.decode("utf-8"))
+            director_name = doc.get('director_name', None)
+            plot_keywords = doc.get('plot_keywords', None)
+            actor_names = doc.get('actor_names', None)
+            genres = doc.get('genres', None)
             items = self.recommendation_model.searchFields(director_name,
                 plot_keywords, actor_names, genres)
             if items is not False:
                 items = json.loads(items.decode("utf-8"))
-                items = items['hits']
             else:
                 items = {'hits': []}
         else:
             items = {'hits': []}
+        print('##########')
+        print(items)
         self.write(json.dumps(items['hits']))

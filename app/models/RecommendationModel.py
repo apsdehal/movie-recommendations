@@ -7,6 +7,7 @@ from config import config
 class RecommendationModel:
     def __init__(self, settings):
         self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
+        self.search_url = "%s/_search" % self.url
 
     def getItemFromId(self, id):
         self.url = '/'.join([self.url,id])
@@ -37,8 +38,8 @@ class RecommendationModel:
                 should_query.append(query)
 
         payload["query"] = {'bool':{'should':should_query}}
-        print(self.url, payload)
-        r = requests.get(self.url, data=json.dumps(payload))
+        print(self.search_url,payload)
+        r = requests.get(self.search_url, data=json.dumps(payload))
         if r.status_code == 200:
             return r.content
         else:
