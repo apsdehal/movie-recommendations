@@ -31,7 +31,7 @@ class RecommendationController(tornado.web.RequestHandler):
     def get(self, id):
         doc = self.recommendation_model.getItemFromId(id)
         if doc is not False:
-            doc = json.loads(doc.decode("utf-8"))
+            doc = json.loads(doc.decode("utf-8"))['_source']
             director_name = doc.get('director_name', None)
             plot_keywords = doc.get('plot_keywords', None)
             actor_names = doc.get('actor_names', None)
