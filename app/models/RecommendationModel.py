@@ -38,7 +38,7 @@ class RecommendationModel:
                 should_query.append(query)
 
         payload["query"] = {'bool':{'should':should_query}}
-        print(self.search_url,payload)
+        # print(self.search_url,payload)
         r = requests.get(self.search_url, data=json.dumps(payload))
         if r.status_code == 200:
             return r.content

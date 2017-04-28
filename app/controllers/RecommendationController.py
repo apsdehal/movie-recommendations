@@ -44,6 +44,5 @@ class RecommendationController(tornado.web.RequestHandler):
                 items = {'hits': []}
         else:
             items = {'hits': []}
-        print('##########')
-        print(items)
+        # print(items)
         self.write(json.dumps(items['hits']))
