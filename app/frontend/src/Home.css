@@ -8,7 +8,7 @@ body {
 .Home-logo {
   animation: Home-logo-spin infinite 20s linear;
   font-family: Roboto, sans-serif;
-  height: 80px;
+  height: 50px;
 }
 
 .Home-header a {
@@ -22,13 +22,13 @@ body {
 
 .Home-header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 80px;
+  padding: 10px;
   color: white;
 }
 
 .Home-intro {
-  font-size: large;
+  font-size: 16px;
 }
 
 @keyframes Home-logo-spin {

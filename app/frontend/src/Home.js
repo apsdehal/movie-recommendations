@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './Home.css';
 import axios from 'axios';
 import constants from "./constants";
+import Thumbnail from "./components/Thumbnail";
 import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router';
+import { Button } from 'react-bootstrap';
 
 
 class Home extends Component {
@@ -74,30 +76,14 @@ class Home extends Component {
                 <label>
                     <input name="query" defaultValue="" ref={(input) => that.queryInput = input} />
                 </label>
-                <button onClick={that.handleClick.bind(that)}>Search</button>
+                <Button bsStyle="success" onClick={that.handleClick.bind(that)}>Search</Button>
             </div>
             <div className="row movie-list">
             {
 
                 this.state.items.map((item, index) => {
-                    item = item["_source"]
-                    return (
-                        <div key={index} className="col-lg-3 col-md-4 col-sm-6 col-xs1-8 col-xs-12">
-                           <div className="item">
-                              <Link data-tip data-for={"item" + index} className="poster" to={"/movie/" + item["doc_id"]}>
-                                <img src={item["movie_poster"]} alt={item["movie_title"]}/>
-                                <span className="name">{item["movie_title"]}</span>
-                              </Link>
-                              <ReactTooltip place="right" effect="solid" className="item-tooltip" id={"item" + index} type="dark">
-                                <div><b>Title:</b> {item["movie_title"]}</div>
-                                <div><b>Actor:</b> {item["actor_names"][0]}, {item["actor_names"][1]}</div>
-                                <div><b>Director:</b> {item["director_name"]}</div>
-                                <div><b>IMDB Score:</b> {item["imdb_score"] + "/10"}</div>
-                                <div><b>Plot:</b> {item["movie_plot"]}</div>
-                              </ReactTooltip>
-                           </div>
-                        </div>
-                    )
+                    item = item["_source"];
+                    return <Thumbnail item={item} key={index} index={index}></Thumbnail>;
                 })
             }
             </div>

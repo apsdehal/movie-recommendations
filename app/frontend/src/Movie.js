@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Home.css';
 import axios from 'axios';
 import constants from "./constants";
-import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router';
+import Thumbnail from "./components/Thumbnail";
 
 class Movie extends Component {
   constructor() {
@@ -71,24 +71,10 @@ class Movie extends Component {
         </div>
         <div className="Home-intro container">
             <div className="row movie-list">
-                <div className="col-lg-offset-10 col-md-offset-10 col-sm-offset-9 col-xs1-offset-8 col-xs-offset-6 col-lg-3 col-md-4 col-sm-6 col-xs1-8 col-xs-12">
                 {
                     Object.keys(movie).length &&
-                        <div className="item">
-                           <Link data-tip data-for="main-movie" className="poster" to={"/movie/" + movie["doc_id"]}>
-                             <img src={movie["movie_poster"]} alt={movie["movie_title"]}/>
-                             <span className="name">{movie["movie_title"]}</span>
-                           </Link>
-                           <ReactTooltip place="right" effect="solid" className="item-tooltip" id="main-movie" type="dark">
-                             <div><b>Title:</b> {movie["movie_title"]}</div>
-                             <div><b>Actor:</b> {movie["actor_names"][0]}, {movie["actor_names"][1]}</div>
-                             <div><b>Director:</b> {movie["director_name"]}</div>
-                             <div><b>IMDB Score:</b> {movie["imdb_score"] + "/10"}</div>
-                             <div><b>Plot:</b> {movie["movie_plot"]}</div>
-                           </ReactTooltip>
-                        </div>
+                    <Thumbnail item={movie} index={-1}></Thumbnail>
                 }
-                </div>
             </div>
             <div>
             Recommendations
@@ -98,23 +84,7 @@ class Movie extends Component {
 
                 this.state.items.length && this.state.items.map((item, index) => {
                     item = item["_source"]
-                    return (
-                        <div key={index} className="col-lg-3 col-md-4 col-sm-6 col-xs1-8 col-xs-12">
-                           <div className="item">
-                              <Link data-tip data-for={"item" + index} className="poster" to={"/movie/" + item["doc_id"]}>
-                                <img src={item["movie_poster"]} alt={item["movie_title"]}/>
-                                <span className="name">{item["movie_title"]}</span>
-                              </Link>
-                              <ReactTooltip place="right" effect="solid" className="item-tooltip" id={"item" + index} type="dark">
-                                <div><b>Title:</b> {item["movie_title"]}</div>
-                                <div><b>Actor:</b> {item["actor_names"][0]}, {item["actor_names"][1]}</div>
-                                <div><b>Director:</b> {item["director_name"]}</div>
-                                <div><b>IMDB Score:</b> {item["imdb_score"] + "/10"}</div>
-                                <div><b>Plot:</b> {item["movie_plot"]}</div>
-                              </ReactTooltip>
-                           </div>
-                        </div>
-                    )
+                    return <Thumbnail item={item} key={index} index={index}></Thumbnail>
                 })
             }
             </div>
