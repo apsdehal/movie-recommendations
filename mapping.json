@@ -14,7 +14,14 @@
         "type": "text"
       },
       "plot_keywords": {
-        "type": "keyword"
+        "type": "text"
+      },
+      "movie_plot": {
+        "type": "text"
+      },
+      "movie_thumbnail": {
+        "type": "keyword",
+        "index": false
       },
       "movie_imdb_link": {
         "type": "keyword",
@@ -33,8 +40,7 @@
         "index": false
       },
       "imdb_score": {
-        "type": "float",
-        "index": false
+        "type": "float"
       }
     }
   }
