@@ -11,6 +11,15 @@ body {
   height: 80px;
 }
 
+.Home-header a {
+    color: white;
+}
+
+.Home-header a:hover {
+    color: white;
+    text-decoration: none;
+}
+
 .Home-header {
   background-color: #222;
   height: 150px;
@@ -26,6 +35,7 @@ body {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
 
 
 .poster {

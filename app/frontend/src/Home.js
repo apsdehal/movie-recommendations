@@ -3,6 +3,8 @@ import './Home.css';
 import axios from 'axios';
 import constants from "./constants";
 import ReactTooltip from "react-tooltip";
+import { Link } from 'react-router';
+
 
 class Home extends Component {
   constructor() {
@@ -82,10 +84,10 @@ class Home extends Component {
                     return (
                         <div key={index} className="col-lg-3 col-md-4 col-sm-6 col-xs1-8 col-xs-12">
                            <div className="item">
-                              <a data-tip data-for={"item" + index} className="poster" href={item["movie_imdb_link"]}>
+                              <Link data-tip data-for={"item" + index} className="poster" to={"/movie/" + item["doc_id"]}>
                                 <img src={item["movie_poster"]} alt={item["movie_title"]}/>
                                 <span className="name">{item["movie_title"]}</span>
-                              </a>
+                              </Link>
                               <ReactTooltip place="right" effect="solid" className="item-tooltip" id={"item" + index} type="dark">
                                 <div><b>Title:</b> {item["movie_title"]}</div>
                                 <div><b>Actor:</b> {item["actor_names"][0]}, {item["actor_names"][1]}</div>
