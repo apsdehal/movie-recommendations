@@ -4,6 +4,7 @@ import axios from 'axios';
 import constants from "./constants";
 import { Link } from 'react-router';
 import Thumbnail from "./components/Thumbnail";
+import Header from "./components/Header";
 
 class Movie extends Component {
   constructor() {
@@ -66,9 +67,7 @@ class Movie extends Component {
     let movie = this.state.movie['_source'] || {};
     return (
       <div className="Home">
-        <div className="Home-header">
-          <h2><Link to="/">Movie Recommendations</Link></h2>
-        </div>
+        <Header></Header>
         <div className="Home-intro container">
             <div className="row movie-list">
                 {
@@ -84,6 +83,10 @@ class Movie extends Component {
 
                 this.state.items.length && this.state.items.map((item, index) => {
                     item = item["_source"]
+
+                    if (item["doc_id"] === movie["doc_id"]) {
+                        return;
+                    }
                     return <Thumbnail item={item} key={index} index={index}></Thumbnail>
                 })
             }

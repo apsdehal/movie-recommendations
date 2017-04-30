@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import './Home.css';
 import axios from 'axios';
 import constants from "./constants";
-import Thumbnail from "./components/Thumbnail";
 import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
+import Thumbnail from "./components/Thumbnail";
+import Header from "./components/Header";
 
 
 class Home extends Component {
@@ -60,9 +61,7 @@ class Home extends Component {
     let that = this;
     return (
       <div className="Home">
-        <div className="Home-header">
-          <h2>Movie Recommendations</h2>
-        </div>
+        <Header></Header>
         <div className="Home-intro container">
             <div>
                 <label>Select main search type
