@@ -1,4 +1,4 @@
-import { Popover, OverlayTrigger } from 'react-bootstrap';
+import { Popover, OverlayTrigger, Image } from 'react-bootstrap';
 import { Link } from 'react-router';
 import React from 'react';
 
@@ -18,7 +18,7 @@ const Thumbnail = (props) => {
             <div className="col-lg-4 col-md-6 col-sm-6 col-xs1-8 col-xs-12">
                <div className="item">
                   <Link className="poster" to={"/movie/" + item["doc_id"]}>
-                    <img src={item["movie_poster"]} alt={item["movie_title"]}/>
+                    <Image responsive rounded src={item["movie_poster"]} alt={item["movie_title"]}/>
                     <span className="name">{item["movie_title"]}</span>
                   </Link>
                </div>

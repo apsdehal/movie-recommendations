@@ -10,7 +10,7 @@ class QueryModel:
 
     def searchField(self, field, query):
         payload = {}
-        payload["query"] = {"term": {field: query}}
+        payload["query"] = {"match": {field: query}}
         print(self.url, payload)
         r = requests.get(self.url, data=json.dumps(payload))
         if r.status_code == 200:
