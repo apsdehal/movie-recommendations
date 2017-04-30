@@ -32,7 +32,8 @@ class SearchController(tornado.web.RequestHandler):
         body = json.loads(self.request.body.decode('utf-8'))
         search_type = body.get('search_type', "")
         query = body.get('query', "")
-        items = self.query_model.searchField(search_type, query)
+        genres = body.get('genres', "")
+        items = self.query_model.searchField(search_type, query, genres)
         if items is not False:
             items = json.loads(items.decode("utf-8"))
             items = items['hits']
