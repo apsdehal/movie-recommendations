@@ -6,6 +6,7 @@ from config import config
 
 class RecommendationModel:
     def __init__(self, settings):
+        self.min_imdb_score = 6.8
         self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
         self.search_url = "%s/_search" % self.url
 
@@ -37,7 +38,9 @@ class RecommendationModel:
                 query = { "match": { "genres":  genre }}
                 should_query.append(query)
 
-        payload["query"] = {'bool':{'should':should_query}}
+        range_query = { "range": { "imdb_score" : { "gte" : self.min_imdb_score }}}
+
+        payload["query"] = {'bool':{'should':should_query, 'filter':range_query}}
         # print(self.search_url,payload)
         r = requests.get(self.search_url, data=json.dumps(payload))
         if r.status_code == 200:
