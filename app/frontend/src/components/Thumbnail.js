@@ -15,7 +15,7 @@ const Thumbnail = (props) => {
     )
     return (
         <OverlayTrigger trigger={["hover", "focus"]} placement="right" overlay={info}>
-            <div className="col-lg-3 col-md-4 col-sm-6 col-xs1-8 col-xs-12">
+            <div className="col-lg-4 col-md-6 col-sm-6 col-xs1-8 col-xs-12">
                <div className="item">
                   <Link className="poster" to={"/movie/" + item["doc_id"]}>
                     <img src={item["movie_poster"]} alt={item["movie_title"]}/>

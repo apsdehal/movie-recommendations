@@ -3,7 +3,6 @@ import './Home.css';
 import axios from 'axios';
 import constants from "./constants";
 import Thumbnail from "./components/Thumbnail";
-import ReactTooltip from "react-tooltip";
 import { Link } from 'react-router';
 import { Button } from 'react-bootstrap';
 
