@@ -1,0 +1,89 @@
+body {
+    font-size: 13px;
+}
+.Home {
+  text-align: center;
+}
+
+.Home-logo {
+  animation: Home-logo-spin infinite 20s linear;
+  font-family: Roboto, sans-serif;
+  height: 80px;
+}
+
+.Home-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.Home-intro {
+  font-size: large;
+}
+
+@keyframes Home-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.poster {
+    height: 200px;
+}
+
+
+.movie-list .item {
+    margin: 10px 0;
+}
+
+.poster .name {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.3rem
+}
+
+.movie-list .item .poster {
+    position: relative;
+    display: block;
+    height: 210px
+}
+
+.item-tooltip {
+    width: 200px;
+}
+
+@media screen and (min-width: 320px) {
+    .movie-list .item .poster {
+        height:200px!important
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .movie-list .item .poster {
+        height:240px!important
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .movie-list .item .poster {
+        height:200px!important
+    }
+}
+
+@media screen and (min-width: 1599px) {
+    .movie-list .item .poster {
+        height:240px!important
+    }
+}
+
+.movie-list .item .poster img {
+    width: 100%;
+    height: 100%
+}
