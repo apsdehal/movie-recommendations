@@ -5,10 +5,11 @@ import constants from "./constants";
 import { Link } from 'react-router';
 import Thumbnail from "./components/Thumbnail";
 import Header from "./components/Header";
+import Search from "./components/Search";
 
 class Movie extends Component {
-  constructor() {
-      super();
+  constructor(props) {
+      super(props);
       this.state = { movie: {}, items: [] };
 
       axios.default.responseType = "json";
@@ -69,6 +70,7 @@ class Movie extends Component {
       <div className="Home">
         <Header></Header>
         <div className="Home-intro container">
+            <Search handler={this.setState.bind(this)}></Search>
             <div className="row movie-list">
                 {
                     Object.keys(movie).length &&

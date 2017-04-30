@@ -6,3 +6,11 @@ body {
 .popover .popover-title {
     font-weight: bold;
 }
+
+a:focus {
+  text-decoration: none;
+}
+
+button:focus,button:active {
+  outline: none;
+}
