@@ -15,9 +15,7 @@ class Home extends Component {
     };
   }
 
-
   render() {
-    let that = this;
     return (
       <div className="Home">
         <Header></Header>

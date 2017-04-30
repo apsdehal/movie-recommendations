@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { FormGroup, FormControl, Form, Button } from 'react-bootstrap';
-import { Link, withRouter } from 'react-router';
+import { withRouter } from 'react-router';
 
 import "./Search.css";
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 import axios from 'axios';
 import constants from "../constants";
 
@@ -10,6 +12,9 @@ class Search extends Component {
   constructor(props) {
     super(props);
     axios.default.responseType = "json";
+    this.state = {
+      genres: ""
+    };
   }
 
   handleClick(e) {
@@ -26,6 +31,7 @@ class Search extends Component {
     let payload = {};
     payload["search_type"] = this.searchInput.value;
     payload["query"] = this.queryInput.value;
+    payload["genres"] = this.state.genres;
     let that = this;
     axios.post(constants.baseUrl + "/search", JSON.stringify(payload)).then((response) => {
        let data = response.data;
@@ -62,6 +68,20 @@ class Search extends Component {
     this.props.router.push("/");
   }
 
+  getGenres() {
+    let options = [];
+    let genres = constants.genres;
+    for(let i = 0; i < genres.length; i++) {
+      options.push({value: genres[i], label: genres[i]});
+    }
+
+    return options;
+  }
+
+  setGenres(val) {
+    this.setState({genres: val});
+  }
+
   render() {
     let that = this;
     return (
@@ -75,6 +95,8 @@ class Search extends Component {
             </FormControl>
 
             <FormControl type="text" name="query" onClick={this.navigate.bind(this)} defaultValue="" inputRef={(input) => that.queryInput = input} onKeyPress={that.handleClick.bind(that)} />
+
+            <Select className="search-form" multi options={this.getGenres()} value={this.state.genres} placeholder="Select Genres..." onChange={this.setGenres.bind(this)} simpleValue></Select>
           </FormGroup>
         </Form>
         <Button className="search-button" bsStyle="success" onClick={that.handleClick.bind(that)}>Search</Button>

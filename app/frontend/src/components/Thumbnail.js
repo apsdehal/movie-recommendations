@@ -9,6 +9,7 @@ const Thumbnail = (props) => {
         <Popover id={"movie_hover_popover_" + props.index} title={item["movie_title"]}>
             <div><b>Actor:</b> {item["actor_names"][0]}, {item["actor_names"][1]}</div>
             <div><b>Director:</b> {item["director_name"]}</div>
+            <div><b>Genres:</b> {item["genres"].join(", ")}</div>
             <div><b>IMDB Score:</b> {item["imdb_score"] + "/10"}</div>
             <div><b>Plot:</b> {item["movie_plot"]}</div>
         </Popover>

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Home.css';
 import axios from 'axios';
 import constants from "./constants";
-import { Link } from 'react-router';
 import Thumbnail from "./components/Thumbnail";
 import Header from "./components/Header";
 import Search from "./components/Search";
@@ -87,9 +86,10 @@ class Movie extends Component {
                     item = item["_source"]
 
                     if (item["doc_id"] === movie["doc_id"]) {
-                        return;
+                        return false;
+                    } else {
+                      return <Thumbnail item={item} key={index} index={index}></Thumbnail>
                     }
-                    return <Thumbnail item={item} key={index} index={index}></Thumbnail>
                 })
             }
             </div>
