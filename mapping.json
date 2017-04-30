@@ -8,7 +8,7 @@
         "type": "text"
       },
       "genres": {
-        "type": "keyword"
+        "type": "text"
       },
       "movie_title": {
         "type": "text"
