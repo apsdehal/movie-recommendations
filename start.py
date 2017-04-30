@@ -2,6 +2,7 @@ from tornado.ioloop import IOLoop
 from tornado import web, httpserver, process, netutil
 from app.controllers.IndexController import IndexController
 from app.controllers.SearchController import SearchController
+from app.controllers.InfoController import InfoController
 from app.controllers.RecommendationController import RecommendationController
 from config import config
 
@@ -19,6 +20,7 @@ def main():
     application = web.Application([
         (r"/", IndexController),
         (r"/search", SearchController),
+        (r"/info/([^/]+)", InfoController),
         (r"/recommend/([^/]+)", RecommendationController),
     ])
 
