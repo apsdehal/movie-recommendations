@@ -10,6 +10,7 @@ class QueryModel:
 
     def searchField(self, field, query, genres, imdb_score):
         payload = {}
+        payload["size"] = 20
         payload["query"] = {"bool": {"should": []}}
         payload["query"]["bool"]["should"].append({"match": {field: query}})
 

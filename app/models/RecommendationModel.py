@@ -42,6 +42,7 @@ class RecommendationModel:
         range_query = {"range": {"imdb_score": {"gte": self.min_imdb_score}}}
 
         payload["query"] = {'bool': {'should': should_query, 'filter': range_query}}
+        payload["size"] = 18
         # print(self.search_url,payload)
         r = requests.get(self.search_url, data=json.dumps(payload))
         if r.status_code == 200:
