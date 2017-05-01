@@ -7,7 +7,8 @@ from config import config
 class RecommendationModel:
     def __init__(self, settings):
         self.min_imdb_score = 0
-        self.genre_boost = 3.0
+        self.genre_boost = 2.0
+        self.plot_keywords_boost = 2.0
         self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
         self.search_url = "%s/_search" % self.url
 
@@ -28,7 +29,7 @@ class RecommendationModel:
             should_query.append(query)
         if plot_keywords:
             for keyword in plot_keywords:
-                query = {"match": {"plot_keywords": keyword}}
+                query = {"match": {"plot_keywords": {'query': keyword, 'boost': self.plot_keywords_boost}}}
                 should_query.append(query)
         if actor_names:
             for actor in actor_names:
