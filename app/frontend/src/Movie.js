@@ -64,7 +64,7 @@ class Movie extends Component {
   }
 
   render() {
-    let movie = this.state.movie['_source'] || {};
+    let movie = this.state.movie || {};
     return (
       <div className="Home">
         <Header></Header>
@@ -83,9 +83,8 @@ class Movie extends Component {
             {
 
                 this.state.items.length && this.state.items.map((item, index) => {
-                    item = item["_source"]
 
-                    if (item["doc_id"] === movie["doc_id"]) {
+                    if (item["_id"] === movie["_id"]) {
                         return false;
                     } else {
                       return <Thumbnail item={item} key={index} index={index}></Thumbnail>

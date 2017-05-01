@@ -25,7 +25,6 @@ class Home extends Component {
             {
 
                 this.state.items.map((item, index) => {
-                    item = item["_source"];
                     return <Thumbnail item={item} key={index} index={index}></Thumbnail>;
                 })
             }
