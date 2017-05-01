@@ -14,7 +14,11 @@ log = logging.getLogger(__name__)
 def main():
     SERVER_PORT = config["server_port"]
 
-    socket = netutil.bind_sockets(SERVER_PORT)
+    SERVER_URL = config["server_url"]
+    if "http://" in config["server_url"]:
+        SERVER_URL = config["server_url"][7:]
+
+    socket = netutil.bind_sockets(SERVER_PORT, address=SERVER_URL)
     task_id = process.fork_processes(0)
 
     application = web.Application([
