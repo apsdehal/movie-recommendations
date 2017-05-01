@@ -2,16 +2,19 @@
   "movie": {
     "properties": {
       "director_name": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "n_gram"
       },
       "actor_names": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "n_gram"
       },
       "genres": {
         "type": "text"
       },
       "movie_title": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "n_gram"
       },
       "plot_keywords": {
         "type": "text"
