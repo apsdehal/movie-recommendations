@@ -32,6 +32,7 @@ class Search extends Component {
     payload["search_type"] = this.searchInput.value;
     payload["query"] = this.queryInput.value;
     payload["genres"] = this.state.genres;
+    payload["imdb_score"] = this.imdbInput.value;
     let that = this;
     axios.post(constants.baseUrl + "/search", JSON.stringify(payload)).then((response) => {
        let data = response.data;
@@ -96,10 +97,16 @@ class Search extends Component {
 
             <FormControl type="text" name="query" onClick={this.navigate.bind(this)} defaultValue="" inputRef={(input) => that.queryInput = input} onKeyPress={that.handleClick.bind(that)} />
 
+
             <Select className="search-form" multi options={this.getGenres()} value={this.state.genres} placeholder="Select Genres..." onChange={this.setGenres.bind(this)} simpleValue></Select>
           </FormGroup>
         </Form>
-        <Button className="search-button" bsStyle="success" onClick={that.handleClick.bind(that)}>Search</Button>
+        <Form inline>
+          <FormGroup>
+            <FormControl className="imdb_score" type="text" name="imdb_score" inputRef={(input) => that.imdbInput = input} placeholder="Min IMDB Score"/>
+            <Button className="search-button" bsStyle="success" onClick={that.handleClick.bind(that)}>Search</Button>
+          </FormGroup>
+        </Form>
       </div>
     )
   }

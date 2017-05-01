@@ -12,7 +12,8 @@ body {
 }
 
 .Home-header a {
-    color: white;
+    color: #00d8ff;
+    font-weight: bold;
 }
 
 .Home-header a:hover {

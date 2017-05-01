@@ -6,3 +6,8 @@
 .search-form {
   margin-top: 1.5em;
 }
+
+.imdb_score {
+  margin-right: 1.5em;
+  width: 150px !important;
+}
