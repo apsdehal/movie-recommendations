@@ -7,6 +7,7 @@ from config import config
 class RecommendationModel:
     def __init__(self, settings):
         self.min_imdb_score = 0
+        self.genre_boost = 3.0
         self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
         self.search_url = "%s/_search" % self.url
 
@@ -35,7 +36,7 @@ class RecommendationModel:
                 should_query.append(query)
         if genres:
             for genre in genres:
-                query = {"match": {"genres": genre}}
+                query = {"match": {"genres": {'query': genre, 'boost': self.genre_boost}}}
                 should_query.append(query)
 
         range_query = {"range": {"imdb_score": {"gte": self.min_imdb_score}}}
