@@ -3,18 +3,21 @@
     "properties": {
       "director_name": {
         "type": "text",
-        "analyzer": "n_gram"
+        "analyzer": "n_gram",
+        "search_analyzer": "standard"
       },
       "actor_names": {
         "type": "text",
-        "analyzer": "n_gram"
+        "analyzer": "n_gram",
+        "search_analyzer": "standard"
       },
       "genres": {
         "type": "text"
       },
       "movie_title": {
         "type": "text",
-        "analyzer": "n_gram"
+        "analyzer": "n_gram",
+        "search_analyzer": "standard"
       },
       "plot_keywords": {
         "type": "text"
