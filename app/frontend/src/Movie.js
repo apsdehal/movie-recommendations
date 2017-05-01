@@ -5,6 +5,7 @@ import constants from "./constants";
 import Thumbnail from "./components/Thumbnail";
 import Header from "./components/Header";
 import Search from "./components/Search";
+import { Panel } from "react-bootstrap";
 
 class Movie extends Component {
   constructor(props) {
@@ -76,23 +77,21 @@ class Movie extends Component {
                     <Thumbnail item={movie} index={-1}></Thumbnail>
                 }
             </div>
-            <div>
-            Recommendations
-            </div>
-            <div className="row movie-list">
-            {
+            <Panel header={"Recommendations"} bsStyle="success">
+              <div className="row movie-list">
+              {
 
-                this.state.items.length && this.state.items.map((item, index) => {
+                  this.state.items.length && this.state.items.map((item, index) => {
 
-                    if (item["_id"] === movie["_id"]) {
-                        return false;
-                    } else {
-                      return <Thumbnail item={item} key={index} index={index}></Thumbnail>
-                    }
-                })
-            }
-            </div>
-
+                      if (item["_id"] === movie["_id"]) {
+                          return false;
+                      } else {
+                        return <Thumbnail item={item} key={index} index={index}></Thumbnail>
+                      }
+                  })
+              }
+              </div>
+            </Panel>
          </div>
        </div>
     );

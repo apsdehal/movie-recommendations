@@ -32,6 +32,13 @@ body {
   font-size: 16px;
 }
 
+.help-button {
+  position: relative;
+  float: right;
+  text-transform: uppercase;
+  margin-top: -50px;
+}
+
 @keyframes Home-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
