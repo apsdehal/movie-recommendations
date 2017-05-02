@@ -40,7 +40,7 @@ class RecommendationModel:
                 query = {"match": {"genres": {'query': genre, 'boost': self.genre_boost}}}
                 should_query.append(query)
 
-        range_query = {"range": {"imdb_score": {"gte": self.min_imdb_score}}}
+        range_query = [{"range": {"imdb_score": {"gte": self.min_imdb_score}}}]
 
         payload["query"] = {'bool': {'should': should_query, 'filter': range_query}}
         payload["size"] = 18
