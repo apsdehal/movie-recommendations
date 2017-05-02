@@ -7,9 +7,10 @@ from config import config
 class RecommendationModel:
     def __init__(self, settings):
         self.min_imdb_score = 0
-        self.genre_boost = 2.0
-        self.plot_keywords_boost = 2.0
-        self.director_boost = 0.5
+        self.genre_boost = 1.5
+        self.plot_keywords_boost = 1.5
+        self.director_boost = 0.75
+        self.movie_boost = 0.75
         self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
         self.search_url = "%s/_search" % self.url
 
@@ -21,9 +22,13 @@ class RecommendationModel:
         else:
             return False
 
-    def searchFields(self, director_name, plot_keywords, actor_names, genres):
+    def searchFields(self, movie_title, director_name, plot_keywords, actor_names, genres):
         payload = {}
         should_query = []
+
+        if movie_title:
+            query = {"match": {"movie_title": {'query': movie_title, 'boost': self.movie_boost}}}
+            should_query.append(query)
 
         if director_name:
             query = {"match": {"director_name": {'query': director_name, 'boost': self.director_boost}}}

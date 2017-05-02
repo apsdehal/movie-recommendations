@@ -48,10 +48,10 @@ def createAndFeedIndexWithDocs(feed_anyway=False):
         for doc in docs:
             payload = doc
             futures.append(http.fetch(query_url + "/" + str(i), method="PUT", body=json.dumps(payload).strip()))
+            i += 1
             count += 1
             if count == 10:
                 yield futures
                 futures = []
                 count = 0
-            i += 1
         ioloop.IOLoop.instance().stop()

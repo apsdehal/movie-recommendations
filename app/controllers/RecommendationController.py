@@ -36,7 +36,8 @@ class RecommendationController(tornado.web.RequestHandler):
             plot_keywords = doc.get('plot_keywords', None)
             actor_names = doc.get('actor_names', None)
             genres = doc.get('genres', None)
-            items = self.recommendation_model.searchFields(director_name,
+            movie_title = doc.get('movie_title', None)
+            items = self.recommendation_model.searchFields(movie_title, director_name,
                 plot_keywords, actor_names, genres)
             if items is not False:
                 items = json.loads(items.decode("utf-8"))
