@@ -9,6 +9,7 @@ class RecommendationModel:
         self.min_imdb_score = 0
         self.genre_boost = 2.0
         self.plot_keywords_boost = 2.0
+        self.director_boost = 0.5
         self.url = "%s/%s/%s" % (settings['url'], settings['index'], settings['type'])
         self.search_url = "%s/_search" % self.url
 
@@ -25,7 +26,7 @@ class RecommendationModel:
         should_query = []
 
         if director_name:
-            query = {"match": {"director_name": director_name}}
+            query = {"match": {"director_name": {'query': director_name, 'boost': self.director_boost}}}
             should_query.append(query)
         if plot_keywords:
             for keyword in plot_keywords:
