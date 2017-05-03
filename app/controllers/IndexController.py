@@ -14,5 +14,8 @@ class IndexController(tornado.web.RequestHandler):
         self.url = "%s:%s/%s" % (config["server_url"], config["server_port"], "search")
 
     @tornado.gen.coroutine
-    def get(self):
-        self.render("../views/index.html", url=self.url, items=[])
+    def get(self, id=None):
+        if config["build_exists"]:
+            self.render("../frontend/build/index.html")
+        else:
+            self.render("../views/index.html", url=self.url, items=[])

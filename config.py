@@ -7,6 +7,8 @@ try:
     with open(configName) as data:
         try:
             config = json.load(data)
+            config["build_exists"] = os.path.join(os.path.dirname(configName), "app", "frontend", "build")
+            config["build_exists"] = os.path.exists(config["build_exists"])
         except Exception:
             print("Error occured while parsing json, please check json validity")
 except Exception:

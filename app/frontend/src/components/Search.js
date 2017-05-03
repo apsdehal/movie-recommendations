@@ -95,7 +95,7 @@ class Search extends Component {
               <option value="movie_title">Movie Name</option>
             </FormControl>
 
-            <FormControl type="text" name="query" onClick={this.navigate.bind(this)} defaultValue="" inputRef={(input) => that.queryInput = input} onKeyPress={that.handleClick.bind(that)} />
+            <FormControl type="text" name="query" onClick={this.navigate.bind(this)} defaultValue="" autoFocus inputRef={(input) => that.queryInput = input} onKeyPress={that.handleClick.bind(that)} />
 
 
             <Select className="search-form" multi options={this.getGenres()} value={this.state.genres} placeholder="Select Genres..." onChange={this.setGenres.bind(this)} simpleValue></Select>

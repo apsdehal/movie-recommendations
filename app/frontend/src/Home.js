@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../public/libs/bootstrap/css/bootstrap.min.css';
+import '../public/libs/bootstrap/css/bootstrap-theme.min.css';
 import './Home.css';
 import Thumbnail from "./components/Thumbnail";
 import Header from "./components/Header";
