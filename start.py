@@ -39,7 +39,7 @@ def main():
     ])
 
     http_server = httpserver.HTTPServer(application)
-    http_server.add_sockets(netutil.bind_sockets(SERVER_PORT + task_id, address="localhost"))
+    http_server.add_sockets(netutil.bind_sockets(SERVER_PORT + task_id, address=SERVER_URL))
     log.info("Worker listening on %d", SERVER_PORT + task_id)
     IOLoop.current().start()
 
