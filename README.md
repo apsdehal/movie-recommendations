@@ -25,3 +25,30 @@ Movie recommendation system is a demo application made for purpose of demonstrat
 - From root folder `cd app/frontend` and do `npm start`. This will open a page on `localhost:3000` which will hot reloaded whenever a change is made to frontend files.
 
 > Note: You can use [NVM](http://github.com/creationix/nvm) to install versions of node.
+
+## Features
+- Built using ReactJS, React Router, React Bootstrap and Tornado Web Framework
+- Single page application
+- Use axios promise based AJAX requests for backend communication.
+
+## Architecture
+
+![Architecture](http://i.imgur.com/nMSfoMM.png)
+
+Search controller handles multi filter search requests from frontend and Recommendation controller handles gathering recommendations for a particular movie from Structured Query Engine.
+
+## Screenshot
+![Screenshot](http://i.imgur.com/cDtK5Zz.png)
+
+## Authors
+Amanpreet Singh @apsdehal
+Karthik Venkatesan @gamemaker007
+Simranjyot Singh Gill @simranjyotgill
+
+## Credits
+
+We will like to thank our Search Engine Architecture's professor Matt Doherty.
+
+## License
+
+Apache License V2
