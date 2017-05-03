@@ -27,7 +27,6 @@ def main():
         settings["static_path"] = build_dir
         settings["static_url_prefix"] = "/"
 
-    socket = netutil.bind_sockets(SERVER_PORT, address="localhost")
     task_id = process.fork_processes(0)
 
     application = web.Application([
@@ -40,8 +39,8 @@ def main():
     ])
 
     http_server = httpserver.HTTPServer(application)
-    http_server.add_sockets(socket)
-    log.info("Worker listening on %d", SERVER_PORT)
+    http_server.add_sockets(netutil.bind_sockets(SERVER_PORT + task_id, address="localhost"))
+    log.info("Worker listening on %d", SERVER_PORT + task_id)
     IOLoop.current().start()
 
 

@@ -103,7 +103,7 @@ class Search extends Component {
         </Form>
         <Form inline>
           <FormGroup>
-            <FormControl className="imdb_score" type="text" name="imdb_score" inputRef={(input) => that.imdbInput = input} placeholder="Min IMDB Score"/>
+            <FormControl className="imdb_score" type="text" name="imdb_score" inputRef={(input) => that.imdbInput = input} onKeyPress={that.handleClick.bind(that)} placeholder="Min IMDB Score"/>
             <Button className="search-button" bsStyle="success" onClick={that.handleClick.bind(that)}>Search</Button>
           </FormGroup>
         </Form>

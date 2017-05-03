@@ -24,7 +24,7 @@ class QueryModel:
                     payload["query"]["bool"]["should"].append({"match": {"genres": genre}})
 
         if len(imdb_score):
-            range_query = {"range": {"imdb_score": {"gte": imdb_score}}}
+            range_query = [{"range": {"imdb_score": {"gte": imdb_score}}}]
             payload["query"]["bool"]["filter"] = range_query
 
         data = json.dumps(payload)
