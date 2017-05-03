@@ -13,7 +13,6 @@ log = logging.getLogger(__name__)
 
 
 def main():
-    print(config)
     SERVER_PORT = config["server_port"]
 
     SERVER_URL = config["server_url"]

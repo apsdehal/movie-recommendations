@@ -1,7 +1,9 @@
 import requests
 import json
-
+import logging
 from config import config
+
+log = logging.getLogger(__name__)
 
 
 class QueryModel:
@@ -20,13 +22,13 @@ class QueryModel:
             if len(genres):
                 for genre in genres:
                     payload["query"]["bool"]["should"].append({"match": {"genres": genre}})
-        print(imdb_score)
+
         if len(imdb_score):
             range_query = {"range": {"imdb_score": {"gte": imdb_score}}}
             payload["query"]["bool"]["filter"] = range_query
 
         data = json.dumps(payload)
-        print(self.url, data)
+        log.info(self.url + " " + data)
         r = requests.get(self.url, data=data)
         if r.status_code == 200:
             return r.content
