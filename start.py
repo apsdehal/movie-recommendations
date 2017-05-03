@@ -28,7 +28,7 @@ def main():
         settings["static_path"] = build_dir
         settings["static_url_prefix"] = "/"
 
-    socket = netutil.bind_sockets(SERVER_PORT, address=SERVER_URL)
+    socket = netutil.bind_sockets(SERVER_PORT, address="localhost")
     task_id = process.fork_processes(0)
 
     application = web.Application([
