@@ -41,9 +41,9 @@ Search controller handles multi filter search requests from frontend and Recomme
 ![Screenshot](http://i.imgur.com/cDtK5Zz.png)
 
 ## Authors
-Amanpreet Singh @apsdehal
-Karthik Venkatesan @gamemaker007
-Simranjyot Singh Gill @simranjyotgill
+- Amanpreet Singh @apsdehal
+- Karthik Venkatesan @gamemaker007
+- Simranjyot Singh Gill @simranjyotgill
 
 ## Credits
 
