@@ -19,6 +19,7 @@ Movie recommendation system is a demo application made for purpose of demonstrat
 - From root folder `cd app/frontend` and do `npm run build`. This will generate a production build ready to be used.
 - Run the backend using `python start.py`
 - Go to `config_server_url:config_server_port` to see the app in action.
+- You will always need to run `npm run build` each time to change something in js files or config.json
 
 ### Running: Development build
 - Run the backend using `python start.py`
